@@ -32,15 +32,7 @@ public class estudiante extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            dbconexion conn = new dbconexion();
-            conn.usuario = "usr";
-            conn.pwd = "pass";
-            producto producto1 = new producto();
-            producto1.nombre = "marcador";
-            producto1.descripcion = "para uso en pizarra blanca";
-            producto1.precio = 5;
-            producto1.cantidad = 2;
-            int a = 10;
+            String producto = request.getParameter("producto");
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -48,19 +40,25 @@ public class estudiante extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Ejemplo de servlet en el proyecto:  " + request.getContextPath() + "</h1>");
-            if(a>5)
+            switch(producto.toString())
             {
-                out.println("<p>la variable a es mayor que 5</p>");
+                case "1":
+                    out.println("<h2>Producto: Agua pura</h2>");
+                    out.println("<p>Precio: Q5.00</p>");
+                    out.println("<img heigth=300 width=300  src=https://mcdonalds.com.gt/storage/menu-products/1640812488_Agua%20pura.jpg />");
+                    break;
+                case "2":
+                    out.println("<h2>Producto: Celular</h2>");
+                    out.println("<p>Precio: Q20,000.00</p>");
+                    out.println("<img heigth=300 width=300 src=https://walmartgt.vtexassets.com/arquivos/ids/413881/Telefono-Celular-Apple-Iphone-15-128Gb-2-67145.jpg?v=638937250629770000 />");
+                     
+                default:
+                    out.println("<h2>No hay producto registrado</h2>");
+                    break;
             }
-            else
-            {
-                out.println("<p>la variable a es menor que 5</p>");
-            }
-            out.println("<h3>Imprimiendo producto</h3>");
-            out.println("Nombre: " + producto1.nombre + "<br>");
-            out.println("Descripcion: " + producto1.descripcion + "<br>");
-            out.println("Precio: " + producto1.precio + "<br>");
-            out.println("Cantidad: " + producto1.cantidad + "<br>");
+            
+            
+            
             out.println("</body>");
             out.println("</html>");
         }
